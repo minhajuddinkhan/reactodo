@@ -8,6 +8,9 @@ class TodoListComponent extends Component {
         this.handleChange = this.handleChange.bind(this);
         console.log(props.isDone)
 
+        this.state = {
+        }
+
     }
     handleChange(i, e) {
         this.props.list[i].done = !this.props.list[i].done
@@ -26,18 +29,28 @@ class TodoListComponent extends Component {
         this.props.undoTodo(i);
     }
 
+    editTodo(i) {
+
+    }
+
     render() {
 
+//==================
+        
         const AllowDone = (i) => (<div className="col col-md-4">
             <button className="btn btn-primary" onClick={this.doneTodo.bind(this, i)}> Done </button>
         </div>)
 
+//==================
         const remove = (i) => (
 
             <div className="col col-md-4">
                 <button className="btn btn-danger" onClick={this.removeTodo.bind(this, i)}> Remove </button>
+                <button type="button" className="btn btn-default" onClick={this.editTodo.bind(this, i)} >Edit</button>
             </div>
         )
+//==================
+
         const undo = (i) => (
 
             <div className="col col-md-4">
@@ -49,7 +62,8 @@ class TodoListComponent extends Component {
             return (
                 <div key={i} className="row">
                     <div className="col col-md-4">
-                        <h4>{task.name}
+                        <h4> 
+                            {task.name}
                         </h4>
 
                     </div>
@@ -64,13 +78,13 @@ class TodoListComponent extends Component {
 
         const heading = () => {
             if (this.props.list.length) {
-               return( <h3>
-                    {this.props.isDone ? 'Things You Gotta Do' : 'Things you have done'}
+                return (<h3>
+                    {!this.props.isDone ? 'Things You Gotta Do' : 'Things you have done'}
                 </h3>
-               )
-            }else {
-                return(
-                    <h3> { !this.props.isDone ? `You've got nothing to do ...`: null }  </h3>
+                )
+            } else {
+                return (
+                    <h3> {!this.props.isDone ? `You've got nothing to do ...` : null}  </h3>
                 )
             }
 
