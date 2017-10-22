@@ -11,14 +11,14 @@ class App extends Component {
     this.state = {
       todoList: []
     }
+    this.todo = [];
   }
 
   addTodo(job) {
-    console.log(job)
-    this.state.todoList.push(job)
+    this.todo = this.state.todoList;
+    this.todo.push(job);
     this.setState({
-      todoList: this.state.todoList
-      
+      todoList: this.todo
     })
   }
 
