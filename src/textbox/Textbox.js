@@ -19,7 +19,7 @@ class TextboxComponent extends Component {
         }
 
         this.pushTodo = this.pushTodo.bind(this);
-
+        this.validateTask = this.validateTask.bind(this);
 
     }
 
@@ -28,10 +28,13 @@ class TextboxComponent extends Component {
             todo: e.target.value
         })
     }
-
+   
+    validateTask(e){
+        return e.key === 'Enter' && e.target.value.length > 0
+    }
+   
     pushTodo(e) {
-        if (e.key === 'Enter') {
-
+        if (this.validateTask(e)) {
             this.props.addTodo(new TodoTask(e.target.value))
             this.setState({
                 todo: ""
@@ -41,8 +44,11 @@ class TextboxComponent extends Component {
 
     render() {
         return (
-            <div>
-                <input type="text"
+            <div className="container">
+
+
+
+                <input placeholder="What are your tasks for today?" className="form-control" type="text"
                     onChange={this.handleChange.bind(this)}
                     value={this.state.todo}
                     onKeyPress={this.pushTodo} />
