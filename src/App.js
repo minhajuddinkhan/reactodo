@@ -14,12 +14,13 @@ class App extends Component {
   }
 
   addTodo(job) {
-    console.log(job)
-    this.state.todoList.push(job)
+    const list = this.state.todoList.push(job)
     this.setState({
       todoList: this.state.todoList
-      
-    })
+     })
+  }
+  componentDidUpdate() {
+    console.log(this.state.todoList);
   }
 
   render() {
